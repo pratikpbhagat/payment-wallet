@@ -1,0 +1,38 @@
+databaseChangeLog:
+  - changeSet:
+      id: 002
+      author: dev
+      changes:
+        - createTable:
+            tableName: wallets
+            columns:
+              - column:
+                  name: id
+                  type: UUID
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: user_id
+                  type: UUID
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_wallet_user
+                    referencedTableName: users
+                    referencedColumnNames: id
+              - column:
+                  name: balance
+                  type: DECIMAL(18,2)
+                  defaultValue: 0.00
+              - column:
+                  name: currency
+                  type: VARCHAR(10)
+                  defaultValue: USD
+              - column:
+                  name: created_at
+                  type: TIMESTAMP
+                  defaultValueComputed: CURRENT_TIMESTAMP
+              - column:
+                  name: updated_at
+                  type: TIMESTAMP
+                  defaultValueComputed: CURRENT_TIMESTAMP

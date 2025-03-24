@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: wallet-service
+  datasource:
+    url: jdbc:postgresql://localhost:55432/payment-wallet
+    username: wallet
+    password: wallet
+    driver-class-name: org.postgresql.Driver
+  liquibase:
+    change-log: classpath:/db/changelog/db.changelog-master.yaml
+    enabled: true
+server:
+  port: 55001

@@ -1,0 +1,5 @@
+databaseChangeLog:
+  - include:
+      file: classpath:db/changelog/01_create_users_table.yaml
+  - include:
+      file: classpath:db/changelog/02_create_wallets_table.yaml
