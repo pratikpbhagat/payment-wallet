@@ -2,7 +2,8 @@ package com.payments.walletservice.service;
 
 import com.payments.walletservice.dto.UserRegistrationRequest;
 import com.payments.walletservice.entity.User;
-import com.payments.walletservice.exceptions.UserExistsException;
+import com.payments.walletservice.exceptions.user.UserExistsException;
+import com.payments.walletservice.exceptions.user.UserNotFoundException;
 import com.payments.walletservice.repository.UserRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -45,5 +46,16 @@ public class UserService {
         user.setPassword(userRegistrationRequest.password());
 
         return userRepository.save(user);
+    }
+
+    /**
+     * Get a user by email
+     *
+     * @param email the email of the user
+     * @return the user
+     * @throws UserNotFoundException if the user is not found
+     */
+    public User getUser(String email) throws UserNotFoundException {
+        return userRepository.findByEmail(email).orElseThrow(() -> new UserNotFoundException("User with email " + email + " not found"));
     }
 }

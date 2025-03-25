@@ -1,4 +1,4 @@
-package com.payments.walletservice.exceptions;
+package com.payments.walletservice.exceptions.user;
 
 public class UserExistsException extends RuntimeException {
 
